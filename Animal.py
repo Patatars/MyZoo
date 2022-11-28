@@ -1,5 +1,8 @@
 class Animal:
-    def __init__(self, name, age, species, biome = "default", needArea = 1, foodTypes = [], predator = False, sound = "", foodVolume = 1):
+    def __init__(self, name, age, species, biome="default", needArea=1, foodTypes=None, predator=False, sound="",
+                 foodVolume=1):
+        if foodTypes is None:
+            foodTypes = []
         self.__species = species
         self.__biome = biome
         self.__needArea = needArea
@@ -11,8 +14,6 @@ class Animal:
         self.__foodVolume = foodVolume
         self.__name = name
         self.__age = age
-
-
 
     @property
     def Feeded(self):
@@ -29,8 +30,11 @@ class Animal:
         if self.__foodEated >= self.__foodVolume:
             self.__isFeeded = True
             return
-        if foodType in self.__foodType:
+        if foodType in self.__foodTypes:
             self.__foodEated += 1
+            if self.__foodEated >= self.__foodVolume:
+                self.__isFeeded = True
+                self.__foodEated = 0
 
     def play(self):
         print("Я играю")
