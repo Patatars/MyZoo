@@ -1,9 +1,12 @@
-from Animal import Animal
+from BaseAnimal import *
+from BearAnimal import BearAnimal
+from CatAnimal import CatAnimal
+from FrogAnimal import FrogAnimal
+from Valier import Valier
 
 if __name__ == '__main__':
-    pete = Animal("Петя", 5, "Слон", foodTypes=["Мясо", "Трава"], foodVolume=5)
-    simba = Animal("Симба", 5, "Пингвин", biome="Тундра", needArea=10, foodTypes=["Рыба", "Мясо"], sound="Хрю",
-                   foodVolume=1)
-    matilde = Animal("Матильяда", 10, "Тигр", predator=True, foodVolume=2, foodTypes=["Мясо"])
+    v = Valier("home")
+    print(v.addAnimal(CatAnimal("qqq", 7)))
+    print(v.addAnimal(FrogAnimal("wqqq", 7)))
+    v.feedAnimals("meat", 20)
 
-    pete.doSound()
