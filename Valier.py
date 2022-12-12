@@ -42,3 +42,20 @@ class Valier:
             numOfFood -= i.eat(food, numOfFood)
         self.__numOfFood = numOfFood
 
+    @property
+    def foodRemaining(self):
+        return self.__numOfFood
+
+    def getHungryAnimals(self):
+        animals = []
+        for animal in self.animals:
+            if not animal.Feeded:
+                animals.append(animal)
+        return animals
+
+    def doSound(self):
+        for animal in self.animals:
+            animal.doSound()
+
+
+
