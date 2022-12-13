@@ -1,4 +1,4 @@
-from BaseAnimal import BaseAnimal
+from Animals.BaseAnimal import BaseAnimal
 
 
 class Valier:
@@ -7,9 +7,11 @@ class Valier:
         self.biome = biome
         self.area = area
         self.employedArea = 0
-        self.__numOfFood = 0
+        self.__food = {}
 
     def addAnimal(self, animal: BaseAnimal):
+        if animal in self.animals:
+            return False
         if self.biome != animal.biome:
             return False
         if self.employedArea + animal.needArea > self.area:
@@ -32,19 +34,22 @@ class Valier:
         if animal not in self.animals:
             return False
         self.animals.remove(animal)
+        self.employedArea -= animal.needArea
         return True
 
-    def feedAnimals(self, food, numOfFood):
-        numOfFood += self.__numOfFood
+    def addFood(self, food, numOfFood):
+        if food not in self.__food.keys():
+            self.__food[food] = numOfFood
+        else:
+            self.__food[food] += numOfFood
+
+    def feedAnimals(self):
         for i in self.animals:
-            if numOfFood <= 0:
-                return
-            numOfFood -= i.eat(food, numOfFood)
-        self.__numOfFood = numOfFood
+            i.eat(self.__food)
 
     @property
     def foodRemaining(self):
-        return self.__numOfFood
+        return self.__food
 
     def getHungryAnimals(self):
         animals = []
@@ -53,9 +58,15 @@ class Valier:
                 animals.append(animal)
         return animals
 
+    def getFoodNeed(self):
+        foodNeed = {}
+        for animal in self.getHungryAnimals():
+            if animal.foodTypes[0] not in self.__food.keys():
+                foodNeed[animal.foodTypes[0]] = animal.needFood
+            else:
+                foodNeed[animal.foodTypes[0]] += animal.needFood
+        return foodNeed
+
     def doSound(self):
         for animal in self.animals:
             animal.doSound()
-
-
-

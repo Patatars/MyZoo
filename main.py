@@ -1,12 +1,15 @@
-from BaseAnimal import *
-from BearAnimal import BearAnimal
-from CatAnimal import CatAnimal
-from FrogAnimal import FrogAnimal
+from Animals.CatAnimal import CatAnimal
 from Valier import Valier
 
 if __name__ == '__main__':
+    cat = CatAnimal("qqq", 12)
     v = Valier("home")
-    print(v.addAnimal(CatAnimal("qqq", 7)))
-    print(v.addAnimal(FrogAnimal("wqqq", 7)))
-    v.feedAnimals("meat", 20)
+    v.addAnimal(cat)
+    v.feedAnimals()
+    v.addFood("meat", 2)
+    v.addFood("fish", 78)
+    v.feedAnimals()
+    print(v.getHungryAnimals())
+    print(v.foodRemaining)
+
 
