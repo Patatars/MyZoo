@@ -64,6 +64,7 @@ class BaseAnimal:
                     self.__isFeeded = True
                     self.__foodEated = 0
                 return True
+        return False
 
     def play(self):
         print("Я играю")

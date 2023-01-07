@@ -20,8 +20,6 @@ class Valier:
             for i in self.animals:
                 if not i.isPredator:
                     return False
-                if i is not animal:
-                    return False
         if not animal.isPredator:
             for i in self.animals:
                 if i.isPredator:

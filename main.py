@@ -5,7 +5,6 @@ if __name__ == '__main__':
     cat = CatAnimal("qqq", 12)
     v = Valier("home")
     v.addAnimal(cat)
-    v.feedAnimals()
     v.addFood("meat", 2)
     v.addFood("fish", 78)
     v.feedAnimals()
